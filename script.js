@@ -1,46 +1,51 @@
 ﻿        function Monster(){
-            this.bite=function(monster){
-                monster.currenthp -= this.sizeofdamage;
+            this.bite = function(monster){
+                monster.currentHp -= this.sizeOfDamage;
+                damage.call(this,monster);
             }
-            this.getName=function(){
-                console.log(this.name);
+            this.getName = function(){
+                console.log("Меня зовут " + this.name);
                 return this.name;
             }
         }
         var monster = new Monster();
 
         function Catmonster(name){
-            this.name=name;
-            this.starthp=50;
-            this.currenthp=this.starthp;
-            this.typeofdamage='царапать';
-            this.sizeofdamage=5;
+            this.name = name;
+            this.startHp = 50;
+            this.currentHp = this.startHp;
+            this.typeOfDamage = 'царапать';
+            this.sizeOfDamage = 5;
         }
-        Catmonster.prototype= monster;
+        Catmonster.prototype = monster;
+        var catMonster = new Catmonster('Cat');
 
-        var catmonster=new Catmonster('Cat');
         function Birdmonster(name){
-            this.name=name;
-            this.starthp=60;
-            this.currenthp=this.starthp;
-            this.typeofdamage='клевать';
-            this.sizeofdamage=3;
+            this.name = name;
+            this.startHp = 60;
+            this.currentHp = this.startHp;
+            this.typeOfDamage = 'клевать';
+            this.sizeOfDamage = 3;
         }
-        Birdmonster.prototype= monster;
-        var birdmonster=new Birdmonster('Bird');
+        Birdmonster.prototype = monster;
+        var birdMonster = new Birdmonster('Bird');
 
-        console.log(catmonster);
-        console.log(birdmonster);
+        function damage(objectOfDamage)
+        {
+            console.log(this.name + ' ' + this.typeOfDamage +' '+ objectOfDamage.name + " и нанес " + this.sizeOfDamage + "ед. урона. " + "Здоровье " + objectOfDamage.name +" равно " + objectOfDamage.currentHp );
+        }
 
-        catmonster.getName();
-        birdmonster.getName();
+       /*демонстрация работы*/
 
-        catmonster.bite(birdmonster);
-        console.log(catmonster.name + ' ' + catmonster.typeofdamage +' '+ birdmonster.name);
-        console.log(birdmonster);
-        catmonster.bite(birdmonster);
-        console.log(catmonster.name + ' ' + catmonster.typeofdamage +' '+ birdmonster.name);
-        console.log(birdmonster);
-        birdmonster.bite(catmonster);
-        console.log(birdmonster.name + ' ' + birdmonster.typeofdamage +' '+ catmonster.name);
-        console.log(catmonster);
+        console.log(catMonster);
+        console.log(birdMonster);
+
+        catMonster.getName();
+        birdMonster.getName();
+
+        catMonster.bite(birdMonster);
+        catMonster.bite(birdMonster);
+        console.log(birdMonster);
+
+        birdMonster.bite(catMonster);
+        console.log(catMonster);
